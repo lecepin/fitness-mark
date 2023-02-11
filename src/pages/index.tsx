@@ -30,6 +30,7 @@ export default function Home() {
           title: "示例俯卧撑",
           groupCount: 3,
           groupList: new Array(3).fill(0),
+          groupTime: 10,
         },
       ];
 
@@ -61,7 +62,7 @@ export default function Home() {
             {item.groupList.map((value, gIndex) => (
               <div className="app-item-group">
                 <div className="app-item-group-name">第 {gIndex + 1} 组</div>
-                {[...new Array(10)].map((_, _index) => (
+                {[...new Array(item.groupTime)].map((_, _index) => (
                   <div
                     className={`app-item-group-item ${
                       _index < value ? "app-item-group-item-done" : ""
@@ -102,7 +103,7 @@ export default function Home() {
             ds: ds.map((item) => ({
               title: item.title,
               groupCount: item.groupCount,
-              groupListCount: item.groupList.length,
+              groupListCount: item.groupTime,
             })),
           }}
           form={form}
@@ -176,7 +177,8 @@ export default function Home() {
                   const newDs = values.ds.map((item) => ({
                     title: item.title,
                     groupCount: item.groupCount,
-                    groupList: new Array(item.groupListCount).fill(0),
+                    groupList: new Array(item.groupCount).fill(0),
+                    groupTime: item.groupListCount,
                   }));
 
                   setVisible(false);
